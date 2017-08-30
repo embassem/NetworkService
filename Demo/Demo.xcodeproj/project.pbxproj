@@ -19,6 +19,10 @@
 		182CB7F61F570B5E00420FB4 /* NetworkExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182CB7F51F570B5E00420FB4 /* NetworkExample.swift */; };
 		18E184411F57416200E50EB8 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E1843F1F57416200E50EB8 /* Owner.swift */; };
 		18E184421F57416200E50EB8 /* userRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E184401F57416200E50EB8 /* userRepo.swift */; };
+		18E184441F5746C400E50EB8 /* AboutProgramModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E184431F5746C400E50EB8 /* AboutProgramModel.swift */; };
+		18E184461F5746F300E50EB8 /* IbtikarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E184451F5746F300E50EB8 /* IbtikarProvider.swift */; };
+		18E184481F574BC400E50EB8 /* MoiaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E184471F574BC400E50EB8 /* MoiaProvider.swift */; };
+		18E1844A1F574BF100E50EB8 /* MOIAAboutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E184491F574BF100E50EB8 /* MOIAAboutModel.swift */; };
 		73CE4EC78795C6BD3FD5954A /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBE547CDDE1FDE83E7ABCAE /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +59,10 @@
 		183049F41F57336D00C00634 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../../../../Library/Developer/Xcode/DerivedData/NetworkService-amivdgmsatyywnftzvlfhtezmxlu/Build/Products/Debug-iphonesimulator/Result/Result.framework"; sourceTree = "<group>"; };
 		18E1843F1F57416200E50EB8 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		18E184401F57416200E50EB8 /* userRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRepo.swift; sourceTree = "<group>"; };
+		18E184431F5746C400E50EB8 /* AboutProgramModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramModel.swift; sourceTree = "<group>"; };
+		18E184451F5746F300E50EB8 /* IbtikarProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IbtikarProvider.swift; sourceTree = "<group>"; };
+		18E184471F574BC400E50EB8 /* MoiaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoiaProvider.swift; sourceTree = "<group>"; };
+		18E184491F574BF100E50EB8 /* MOIAAboutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOIAAboutModel.swift; sourceTree = "<group>"; };
 		1FBE547CDDE1FDE83E7ABCAE /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83CBD2E0A97C300F1F08E18 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +102,10 @@
 		182CB7CE1F57098800420FB4 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				18E184491F574BF100E50EB8 /* MOIAAboutModel.swift */,
+				18E184471F574BC400E50EB8 /* MoiaProvider.swift */,
+				18E184451F5746F300E50EB8 /* IbtikarProvider.swift */,
+				18E184431F5746C400E50EB8 /* AboutProgramModel.swift */,
 				18E1843F1F57416200E50EB8 /* Owner.swift */,
 				18E184401F57416200E50EB8 /* userRepo.swift */,
 				182CB7E11F570A6300420FB4 /* GitHubAPI.swift */,
@@ -277,7 +289,11 @@
 				182CB7E31F570A6300420FB4 /* GitHubAPI.swift in Sources */,
 				182CB7E41F570A6300420FB4 /* GithubRoot.swift in Sources */,
 				18E184421F57416200E50EB8 /* userRepo.swift in Sources */,
+				18E184481F574BC400E50EB8 /* MoiaProvider.swift in Sources */,
+				18E184441F5746C400E50EB8 /* AboutProgramModel.swift in Sources */,
+				18E1844A1F574BF100E50EB8 /* MOIAAboutModel.swift in Sources */,
 				182CB7D01F57098800420FB4 /* AppDelegate.swift in Sources */,
+				18E184461F5746F300E50EB8 /* IbtikarProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
