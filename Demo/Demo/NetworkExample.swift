@@ -8,7 +8,7 @@
 
 import Foundation
 import NetworkService
-
+import Moya
 // Example
 
 
@@ -41,7 +41,7 @@ class GithubProvider: NSObject  , ProviderProtocal {
         }
         let token = ""
         let moyaProvider =  MoyaProvider<Target>(endpointClosure: endpointClosure,
-                                                 plugins: [ APPNetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter),
+                                                 plugins: [ NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter),
                                                             AccessTokenPlugin(token: token )])
         
         return moyaProvider

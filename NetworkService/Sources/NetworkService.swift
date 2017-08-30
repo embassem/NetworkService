@@ -24,7 +24,7 @@ import enum Result.Result
 //============================================================================
 //============================================================================
 //MARK: -Protocal
-protocol ProviderProtocal  {
+public protocol ProviderProtocal  {
     
     associatedtype Target:TargetType;
 //    associatedtype ProviderTargetType:MoyaProvider<APITarget>
@@ -46,7 +46,7 @@ protocol ProviderProtocal  {
 //MARK: - typealias
 
 
-public typealias networkResult = Result<Mappable?, NetworkServiceError>
+public typealias networkResult = Result<Mappable?, MoyaError>
 public typealias NetworkResponse = (_ result: networkResult , _ json:JSON? , _ response: Moya.Response? , _ type:NetworkResponseType ) -> Void;
 
 
@@ -72,15 +72,19 @@ public enum NetworkResponseType{
 //MARK: - NetworkAbstractionService
 
 
-public class NetworkAbstractionService: NSObject {
+public class NetworkService: NSObject {
     
-    static let shared: NetworkAbstractionService = {
-        let instance = NetworkAbstractionService()
+  public  static let shared: NetworkService = {
+        let instance = NetworkService()
         return instance
     }()
     
     
-   
+    public class func config(providers :[Any] ) {
+       
+        NetworkService.providers = providers;
+        
+    }
     
    private static  var providers :[Any] = [] //= [IbtikarProvider(serverUrl: ibtikarBaseUrl).provider!]
     
@@ -94,10 +98,10 @@ public class NetworkAbstractionService: NSObject {
     }
     
     
-    public func excute<E:TargetType, T:Mappable>(endPoint: E,modelType:T.Type,responseType:NetworkResponseType = .object, delegate: @escaping NetworkResponse) where E:TargetType {
+    public func request<E:TargetType, T:Mappable>(endPoint: E,modelType:T.Type,responseType:NetworkResponseType = .object, delegate: @escaping NetworkResponse) where E:TargetType {
         
         
-         let targetproviders = NetworkAbstractionService.providers.flatMap{ $0 as? MoyaProvider<E> }
+         let targetproviders = NetworkService.providers.flatMap{ $0 as? MoyaProvider<E> }
         
         
             if let provider = targetproviders.first {
@@ -107,7 +111,7 @@ public class NetworkAbstractionService: NSObject {
         }
         
             }else {
-                delegate(Result.failure(NetworkServiceError.customError(NSError(domain: "", code: -999))), nil, nil, responseType);
+                delegate(Result.failure(MoyaError.underlying(NSError(domain: "", code: -999), nil)), nil, nil, responseType);
         }
         
     }
@@ -124,9 +128,9 @@ public class NetworkAbstractionService: NSObject {
             
         case let .failure(error):
             
-            let networkError = error as! NetworkServiceError
+//            let networkError = error as! NetworkServiceError
             
-            self.failureHandler(modelType, error: networkError, response: nil, delegate: delegate)
+            self.failureHandler(modelType, error: error, response: nil, delegate: delegate)
             
         }
         
@@ -171,14 +175,13 @@ public class NetworkAbstractionService: NSObject {
         }
         
         //        delegate(json, model, response);
-        let xxcv = LoginResponse(ibtikarLoginResponse: nil, moiaLoginResponse: nil);
         
-        delegate(.success(model!), json!, response, type)
+        delegate(.success(model), json, response, type)
         
     }
     
     
-    private func failureHandler<T:Mappable> (_ modelType: T.Type ,error: NetworkServiceError ,response: Moya.Response? , _ type:NetworkResponseType = .object, delegate: @escaping NetworkResponse)  where T: Mappable {
+    private func failureHandler<T:Mappable> (_ modelType: T.Type ,error: MoyaError ,response: Moya.Response? , _ type:NetworkResponseType = .object, delegate: @escaping NetworkResponse)  where T: Mappable {
         
         var json: JSON? = nil;
         var model: Mappable? = nil;
@@ -201,7 +204,7 @@ public class NetworkAbstractionService: NSObject {
         
         
         
-        delegate( Result<Mappable?, NetworkServiceError>.failure(error), json!, response, type)
+        delegate( Result<Mappable?, MoyaError>.failure(error), json, response, type)
         
         
         
@@ -366,7 +369,7 @@ public class BaseGenaric : NSObject, NSCoding, Mappable{
 
 // MARK: - Provider setup
 
-fileprivate  func JSONResponseDataFormatter(_ data: Data) -> Data {
+public  func JSONResponseDataFormatter(_ data: Data) -> Data {
     do {
         let dataAsJSON = try JSONSerialization.jsonObject(with: data)
         let prettyData = try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
@@ -381,7 +384,7 @@ fileprivate  func JSONResponseDataFormatter(_ data: Data) -> Data {
 
 
 
-fileprivate  extension String {
+public  extension String {
     var urlEscaped: String {
         return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     }
