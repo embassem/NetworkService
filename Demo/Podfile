@@ -1,0 +1,24 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+
+# Our Libraries
+def libraries
+  pod 'NetworkService', :path => "../"
+  pod 'Moya'
+  pod 'Moya/ReactiveSwift'
+  pod 'Moya/RxSwift'
+  pod 'Alamofire'
+  pod 'RxSwift'
+  pod 'ReactiveSwift'
+end
+
+target 'Demo' do
+  platform :ios, '10.0'
+  libraries
+end
+
+target 'DemoMultiTarget' do
+  platform :ios, '10.0'
+  libraries
+end
